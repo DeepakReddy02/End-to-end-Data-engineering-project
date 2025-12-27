@@ -21,11 +21,11 @@ An end-to-end data engineering pipeline on Databricks leveraging the publicly av
 - **Sources**  
   - "District-wise Rainfall Distribution" as API Request
   - Source from "https://ndap.niti.gov.in/dataset/7319"
-  <img width="1880" height="803" alt="image" src="https://github.com/user-attachments/assets/60f688f4-74ba-42a3-9af0-67e560d207e6" />
+<img width="1880" height="803" alt="image" src="https://github.com/user-attachments/assets/60f688f4-74ba-42a3-9af0-67e560d207e6" />
 
     
 - **Storage**  
-  - All raw ingestions stored as Delta tables in the `rainfall_data/bronze_layer` container
+  - All raw ingestions stored as Parquet in the `rainfall_data/bronze_layer` container
  
 ### Phase 2: Silver (Cleansing & Enrichment)
 
@@ -34,8 +34,8 @@ An end-to-end data engineering pipeline on Databricks leveraging the publicly av
   - Remove duplicates
   - Cast of data types for analytics readiness
     
-- **Output**  
-  - Cleaned Delta tables in the `rainfall_data/silver_layer` container
+- **Storage**  
+  - Cleaned Parquet files in the `rainfall_data/silver_layer` container
 
 ### Phase 3: Gold (Quality & Aggregation)
 
@@ -43,6 +43,9 @@ An end-to-end data engineering pipeline on Databricks leveraging the publicly av
   - Removed Unncessary columns
   - De-normalizing dataset to tables(Fact & Dimension)
   - Re-naming columns for ease of use
+
+- **Output**  
+  - Aggregated the tables as `rainfall_data.rain_fact_table` and `workspace.rainfall_data.state_table`
  
 ---
 
