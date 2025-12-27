@@ -57,3 +57,10 @@ An end-to-end data engineering pipeline on Databricks leveraging the publicly av
 | Unity Catlog              | ACID-compliant, performant data format    |
 | Python / PySpark          | Data transformation logic                 |
 
+---
+## Future Improvements
+- Implementing Concurrency to reduce the time taken for the API calls.
+- Moving to a External storage instead of Unity Catlog.
+- Automate the whole process using Databricks job pipeline. 
+
+
