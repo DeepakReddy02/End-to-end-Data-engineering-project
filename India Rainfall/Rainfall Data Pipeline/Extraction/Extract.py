@@ -70,7 +70,7 @@ parameters = {
 }
 page_data = []
 header_data = []
-start_date = datetime.strptime("2025-12-26", "%Y-%m-%d").date()
+start_date = datetime.strptime("", "%Y-%m-%d").date()
 CurrentDate = datetime.now().date()
 
 print("Extraction Start")
