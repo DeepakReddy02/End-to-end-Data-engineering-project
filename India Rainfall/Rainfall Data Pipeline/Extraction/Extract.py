@@ -1,7 +1,9 @@
 %pip install python-dotenv
 import requests
 from pyspark.sql.types import *
+from pyspark.sql.functions import max
 from datetime import datetime
+import pandas as pd
 import os
 from dotenv import load_dotenv
 
@@ -70,8 +72,15 @@ parameters = {
 }
 page_data = []
 header_data = []
-start_date = datetime.strptime("", "%Y-%m-%d").date()
+Prev_Bronze = spark.read.parquet("/Volumes/workspace/rainfall_data/bronze_layer/RainFall_data.parquet")
+max_CalDate_row = Prev_Bronze.select(max("CalendarDay")).collect()[0]
+max_CalDate = max_CalDate_row[0] if max_CalDate_row[0] is not None else None
 CurrentDate = datetime.now().date()
+Default_Dif = CurrentDate - pd.DateOffset(months=1)
+if max_CalDate:
+    start_date = datetime.strptime(max_CalDate, "%Y-%m-%d").date()
+else:
+    start_date = (CurrentDate - pd.DateOffset(months=1)).date()
 
 print("Extraction Start")
 while True:
